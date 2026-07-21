@@ -1,122 +1,56 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Simple Booking</title>
-<meta name="description" content="Demandez une démonstration de Simple Booking ou contactez-nous par WhatsApp ou par e-mail. Réponse rapide garantie.">
-<link rel="canonical" href="https://simplebooking.app/contact">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" role="img" aria-labelledby="receiptTitle">
+  <title id="receiptTitle">Aperçu d'une confirmation de réservation Simple Booking</title>
+  <defs>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#14241F" flood-opacity="0.16"/>
+    </filter>
+  </defs>
 
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Simple Booking">
-<meta property="og:title" content="Contact — Simple Booking">
-<meta property="og:description" content="Demandez une démonstration ou contactez-nous par WhatsApp ou e-mail.">
-<meta property="og:image" content="https://simplebooking.app/images/og-image.png">
-<meta property="og:url" content="https://simplebooking.app/contact">
-<meta property="og:locale" content="fr_FR">
-<meta name="twitter:card" content="summary_large_image">
+  <!-- carte de fond légèrement pivotée -->
+  <g transform="rotate(-3 210 260)">
+    <rect x="30" y="20" width="330" height="470" rx="4" fill="#E9E2D2"/>
+  </g>
 
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+  <!-- carte principale : reçu -->
+  <g filter="url(#cardShadow)">
+    <path d="M40 30 H380 V470 L365 484 L350 470 L335 484 L320 470 L305 484 L290 470 L275 484 L260 470 L245 484 L230 470 L215 484 L200 470 L185 484 L170 470 L155 484 L140 470 L125 484 L110 470 L95 484 L80 470 L65 484 L40 470 Z" fill="#FFFFFF"/>
 
-<header class="site-header">
-  <div class="container">
-    <a href="/" class="logo">
-      <img src="/images/favicon.svg" alt="" width="30" height="30">
-      Simple Booking
-    </a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/tarification">Tarification</a></li>
-        <li><a href="/demonstration">Démonstration</a></li>
-        <li><a href="/contact" aria-current="page">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="nav-cta">
-      <a href="/contact" class="btn btn-primary">Essayer gratuitement</a>
-    </div>
-    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-      <span></span>
-    </button>
-  </div>
-</header>
+    <!-- bandeau haut -->
+    <rect x="40" y="30" width="340" height="64" rx="0" fill="#1B3A34"/>
+    <circle cx="66" cy="62" r="14" fill="#E3A73A"/>
+    <path d="M59 62l5 5 9-10" fill="none" stroke="#1B3A34" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="90" y="58" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.5" fill="#E9E2D2">RÉSERVATION</text>
+    <text x="90" y="76" font-family="'Fraunces', serif" font-size="17" fill="#FFFFFF">Confirmée</text>
 
-<main>
-  <section class="tight">
-    <div class="container">
-      <div class="section-head left reveal" style="max-width:640px;">
-        <span class="eyebrow">Contact</span>
-        <h1>Parlons de votre activité</h1>
-        <p style="color:var(--ink-soft)">Décrivez-nous vos besoins, nous revenons vers vous rapidement pour organiser une démonstration.</p>
-      </div>
+    <!-- pointillés -->
+    <line x1="60" y1="112" x2="360" y2="112" stroke="#E4DFD3" stroke-width="2" stroke-dasharray="4 6"/>
 
-      <div class="contact-grid reveal">
-        <form id="contact-form" novalidate>
-          <div class="field">
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="field">
-            <label for="company">Entreprise</label>
-            <input type="text" id="company" name="company">
-          </div>
-          <div class="field">
-            <label for="phone">Téléphone</label>
-            <input type="tel" id="phone" name="phone" required>
-          </div>
-          <div class="field">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Parlez-nous de votre activité et de vos besoins..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Envoyer la demande</button>
-          <p class="form-note">Vos informations servent uniquement à vous recontacter au sujet de Simple Booking.</p>
-          <p id="form-status" class="form-status" role="status"></p>
-        </form>
+    <!-- ligne info : client -->
+    <text x="60" y="140" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing="1.2" fill="#8A8677">CLIENTE</text>
+    <text x="60" y="162" font-family="'Inter', sans-serif" font-size="17" font-weight="600" fill="#14241F">Awa Kouassi</text>
 
-        <aside class="contact-side">
-          <h3 style="margin-bottom:18px;">Autres moyens de nous joindre</h3>
-          <a href="https://wa.me/22800000000" class="channel" target="_blank" rel="noopener">
-            <span class="ico">💬</span>
-            <span><strong>WhatsApp</strong><span>Réponse en quelques heures</span></span>
-          </a>
-          <a href="mailto:bonjour@simplebooking.app" class="channel">
-            <span class="ico">✉️</span>
-            <span><strong>E-mail</strong><span>bonjour@simplebooking.app</span></span>
-          </a>
-        </aside>
-      </div>
-    </div>
-  </section>
-</main>
+    <!-- ligne info : service -->
+    <text x="60" y="196" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing="1.2" fill="#8A8677">PRESTATION</text>
+    <text x="60" y="218" font-family="'Inter', sans-serif" font-size="17" font-weight="600" fill="#14241F">Coiffure &amp; soin</text>
 
-<footer class="site-footer">
-  <div class="container">
-    <div>
-      <a href="/" class="logo">
-        <img src="/images/favicon.svg" alt="" width="26" height="26">
-        Simple Booking
-      </a>
-      <p class="footer-meta">Le rendez-vous, sans le message.<br>© 2026 Simple Booking. Tous droits réservés.</p>
-    </div>
-    <ul class="footer-links">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/tarification">Tarification</a></li>
-      <li><a href="/demonstration">Démonstration</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </div>
-</footer>
+    <!-- date / heure -->
+    <text x="60" y="252" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing="1.2" fill="#8A8677">DATE</text>
+    <text x="60" y="274" font-family="'Inter', sans-serif" font-size="17" font-weight="600" fill="#14241F">Jeudi 23 juillet</text>
 
-<script src="/js/main.js"></script>
-</body>
-</html>
+    <text x="230" y="252" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing="1.2" fill="#8A8677">HEURE</text>
+    <text x="230" y="274" font-family="'Inter', sans-serif" font-size="17" font-weight="600" fill="#14241F">16h00</text>
+
+    <line x1="60" y1="298" x2="360" y2="298" stroke="#E4DFD3" stroke-width="2" stroke-dasharray="4 6"/>
+
+    <!-- lien de réservation -->
+    <text x="60" y="326" font-family="'IBM Plex Mono', monospace" font-size="10" letter-spacing="1.2" fill="#8A8677">VOTRE LIEN</text>
+    <rect x="60" y="336" width="260" height="30" rx="15" fill="#FAF8F4"/>
+    <text x="78" y="356" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#1B3A34">simplebooking.app/awa</text>
+
+    <!-- badge notification -->
+    <rect x="60" y="392" width="260" height="46" rx="10" fill="#FFF6E6"/>
+    <circle cx="82" cy="415" r="9" fill="#E3A73A"/>
+    <text x="99" y="411" font-family="'Inter', sans-serif" font-size="11.5" font-weight="600" fill="#14241F">Notification envoyée</text>
+    <text x="99" y="426" font-family="'Inter', sans-serif" font-size="11" fill="#5C5A50">Ajoutée à Google Calendar</text>
+  </g>
+</svg>

@@ -1,280 +1,212 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Booking — Le rendez-vous, sans le message.</title>
-<meta name="description" content="Simple Booking permet à votre entreprise de recevoir des réservations en ligne en moins d'une minute : lien partageable, agenda synchronisé, notifications automatiques. Fini les rendez-vous gérés à la main sur WhatsApp.">
-<link rel="canonical" href="https://simplebooking.app/">
+// Simple Booking — mini-site
+// Comportements : menu mobile, formulaire de contact, révélation au défilement,
+// et le simulateur de réservation interactif.
 
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Simple Booking">
-<meta property="og:title" content="Simple Booking — Le rendez-vous, sans le message.">
-<meta property="og:description" content="Partagez votre lien et laissez vos clients réserver en moins d'une minute. Agenda synchronisé, notifications automatiques.">
-<meta property="og:image" content="https://simplebooking.app/images/og-image.png">
-<meta property="og:url" content="https://simplebooking.app/">
-<meta property="og:locale" content="fr_FR">
+document.addEventListener("DOMContentLoaded", function () {
+  initNav();
+  initContactForm();
+  initReveal();
+  initSimulators();
+});
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Simple Booking — Le rendez-vous, sans le message.">
-<meta name="twitter:description" content="Réservation en ligne en moins d'une minute pour les petites entreprises.">
-<meta name="twitter:image" content="https://simplebooking.app/images/og-image.png">
+/* ---------- Menu mobile ---------- */
+function initNav() {
+  var toggle = document.querySelector(".nav-toggle");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      document.body.classList.toggle("nav-open");
+      toggle.setAttribute("aria-expanded", String(document.body.classList.contains("nav-open")));
+    });
+  }
+  document.querySelectorAll(".nav-links a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      document.body.classList.remove("nav-open");
+    });
+  });
+}
 
-<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+/* ---------- Formulaire de contact ---------- */
+function initContactForm() {
+  var form = document.getElementById("contact-form");
+  if (!form) return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var status = document.getElementById("form-status");
+    var required = form.querySelectorAll("[required]");
+    var valid = true;
+    required.forEach(function (field) {
+      if (!field.value.trim()) valid = false;
+    });
+    if (!valid) {
+      status.textContent = "Merci de remplir les champs obligatoires.";
+      status.dataset.state = "error";
+      return;
+    }
+    status.textContent = "Merci ! Votre demande a bien été reçue, nous revenons vers vous rapidement.";
+    status.dataset.state = "ok";
+    form.reset();
+  });
+}
 
-<header class="site-header">
-  <div class="container">
-    <a href="/" class="logo">
-      <img src="/images/favicon.svg" alt="" width="30" height="30">
-      Simple Booking
-    </a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="/" aria-current="page">Accueil</a></li>
-        <li><a href="/tarification">Tarification</a></li>
-        <li><a href="/demonstration">Démonstration</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="nav-cta">
-      <a href="/contact" class="btn btn-ghost">Voir une démonstration</a>
-      <a href="/contact" class="btn btn-primary">Essayer gratuitement</a>
-    </div>
-    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-      <span></span>
-    </button>
-  </div>
-</header>
+/* ---------- Révélation douce au défilement (une seule fois par élément) ---------- */
+function initReveal() {
+  var items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(function (el) { observer.observe(el); });
+}
 
-<main>
+/* ---------- Simulateur de réservation ---------- */
+// Chaque élément .simulator sur la page est initialisé indépendamment,
+// avec ses propres données d'exemple (service / créneau / confirmation).
+function initSimulators() {
+  document.querySelectorAll(".simulator").forEach(setupSimulator);
+}
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-copy">
-        <span class="eyebrow">Gestion de rendez-vous en ligne</span>
-        <h1>Le rendez-vous,<br>sans le message.</h1>
-        <p class="lede">Vos rendez-vous, en toute simplicité. Partagez votre lien et laissez vos clients réserver en moins d'une minute — sans échange de messages.</p>
-        <div class="hero-actions">
-          <a href="/contact" class="btn btn-primary">Essayer gratuitement</a>
-          <a href="/demonstration" class="btn btn-ghost">Voir une démonstration</a>
-        </div>
-        <p class="hero-trust">Aucune carte bancaire requise · Mise en route en quelques minutes</p>
-      </div>
-      <div class="hero-art">
-        <div class="simulator">
-          <div class="simulator-head">
-            <span class="dot"></span>
-            <span>Réservation en direct</span>
-          </div>
-          <div class="simulator-progress">
-            <div class="bar done"><span></span></div>
-            <div class="bar"><span></span></div>
-            <div class="bar"><span></span></div>
-            <div class="bar"><span></span></div>
-          </div>
-          <div class="simulator-body">
-            <div class="sim-step active">
-              <h4>1. Choisissez une prestation</h4>
-              <div class="sim-services">
-                <button type="button" class="sim-option" data-service="Coiffure &amp; soin">Coiffure &amp; soin <span class="price">45 min</span></button>
-                <button type="button" class="sim-option" data-service="Shooting Standard">Shooting Standard <span class="price">1h</span></button>
-                <button type="button" class="sim-option" data-service="Consultation">Consultation <span class="price">30 min</span></button>
-              </div>
-              <div class="sim-actions">
-                <button type="button" class="sim-btn sim-btn-next" disabled>Continuer</button>
-              </div>
-            </div>
-            <div class="sim-step">
-              <h4>2. Choisissez un créneau</h4>
-              <div class="sim-slots">
-                <button type="button" class="sim-slot">14h00</button>
-                <button type="button" class="sim-slot">16h00</button>
-                <button type="button" class="sim-slot">17h30</button>
-              </div>
-              <div class="sim-actions">
-                <button type="button" class="sim-btn sim-btn-back">Retour</button>
-                <button type="button" class="sim-btn sim-btn-next" disabled>Continuer</button>
-              </div>
-            </div>
-            <div class="sim-step">
-              <h4>3. Vos coordonnées</h4>
-              <div class="sim-field">
-                <label for="sim-name-1">Nom</label>
-                <input type="text" id="sim-name-1" name="sim-name" required placeholder="Votre nom">
-              </div>
-              <div class="sim-field">
-                <label for="sim-phone-1">Téléphone</label>
-                <input type="tel" id="sim-phone-1" name="sim-phone" required placeholder="Votre numéro">
-              </div>
-              <div class="sim-actions">
-                <button type="button" class="sim-btn sim-btn-back">Retour</button>
-                <button type="button" class="sim-btn sim-btn-next">Confirmer</button>
-              </div>
-            </div>
-            <div class="sim-step">
-              <div class="sim-confirm">
-                <div class="check-badge">✓</div>
-                <h4 style="margin-bottom:4px;">Rendez-vous confirmé</h4>
-                <p style="color:var(--ink-soft); font-size:0.85rem; margin:0;">Une notification a été envoyée automatiquement.</p>
-                <div class="sim-receipt">
-                  <div class="row"><span>Prestation</span><span data-field="service">—</span></div>
-                  <div class="row"><span>Créneau</span><span data-field="slot">—</span></div>
-                  <div class="row"><span>Client</span><span data-field="name">—</span></div>
-                  <span class="status-pill">En attente de votre validation</span>
-                </div>
-                <button type="button" class="sim-restart">Essayer avec un autre créneau</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+function setupSimulator(root) {
+  var state = { service: null, slot: null, name: "", phone: "" };
+  var steps = root.querySelectorAll(".sim-step");
+  var bars = root.querySelectorAll(".simulator-progress .bar");
+  var current = 0;
 
-  <!-- Le problème -->
-  <section class="problem">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Le constat</span>
-        <h2>Gérer ses rendez-vous à la main prend du temps</h2>
-      </div>
-      <div class="grid-3 reveal">
-        <div class="problem-card">
-          <span class="mark">✕</span>
-          <h3>WhatsApp saturé</h3>
-          <p>Les demandes de rendez-vous se mélangent aux autres messages, et rien n'est centralisé.</p>
-        </div>
-        <div class="problem-card">
-          <span class="mark">✕</span>
-          <h3>Des clients oubliés</h3>
-          <p>Sans agenda partagé, un message peut se perdre — et un client avec.</p>
-        </div>
-        <div class="problem-card">
-          <span class="mark">✕</span>
-          <h3>Des journées à répondre</h3>
-          <p>Confirmer, reprogrammer, rappeler les disponibilités : autant de temps perdu.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  function showStep(index) {
+    steps.forEach(function (s, i) { s.classList.toggle("active", i === index); });
+    bars.forEach(function (b, i) { b.classList.toggle("done", i <= index); });
+    current = index;
+  }
 
-  <!-- La solution -->
-  <section>
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">La solution</span>
-        <h2>Un lien. Un agenda. Zéro message.</h2>
-      </div>
-      <ul class="solution-list reveal">
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Réservation autonome</h3><p>Vos clients choisissent leur créneau eux-mêmes, à toute heure.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Agenda synchronisé</h3><p>Connecté à Google Calendar, toujours à jour.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Partage Facebook</h3><p>Votre lien de réservation directement sur votre page.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Disponibilités automatiques</h3><p>Plus de créneaux doublés ni de conflits d'horaires.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Notifications</h3><p>Vous et vos clients êtes prévenus à chaque étape.</p></div>
-        </li>
-      </ul>
-    </div>
-  </section>
+  // Étape 1 — choix du service
+  root.querySelectorAll(".sim-option").forEach(function (opt) {
+    opt.addEventListener("click", function () {
+      root.querySelectorAll(".sim-option").forEach(function (o) { o.classList.remove("selected"); });
+      opt.classList.add("selected");
+      state.service = opt.dataset.service;
+      var nextBtn = steps[0].querySelector(".sim-btn-next");
+      if (nextBtn) nextBtn.disabled = false;
+    });
+  });
 
-  <!-- Fonctionnement -->
-  <section class="tight" style="background:var(--card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">En trois étapes</span>
-        <h2>Prêt en moins d'une minute</h2>
-      </div>
-      <div class="steps reveal">
-        <div class="step">
-          <span class="num">1</span>
-          <h3>Créer son espace</h3>
-          <p>Renseignez votre activité et vos prestations.</p>
-        </div>
-        <div class="step">
-          <span class="num">2</span>
-          <h3>Partager son lien</h3>
-          <p>Sur WhatsApp, Facebook ou votre site.</p>
-        </div>
-        <div class="step">
-          <span class="num">3</span>
-          <h3>Recevoir les réservations</h3>
-          <p>Automatiquement, dans votre agenda.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  // Étape 2 — choix du créneau
+  root.querySelectorAll(".sim-slot").forEach(function (slot) {
+    slot.addEventListener("click", function () {
+      root.querySelectorAll(".sim-slot").forEach(function (s) { s.classList.remove("selected"); });
+      slot.classList.add("selected");
+      state.slot = slot.textContent.trim();
+      var nextBtn = steps[1].querySelector(".sim-btn-next");
+      if (nextBtn) nextBtn.disabled = false;
+    });
+  });
 
-  <!-- Fonctionnalités -->
-  <section>
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Fonctionnalités</span>
-        <h2>Tout ce qu'il faut, rien de plus</h2>
-      </div>
-      <div class="grid-3 reveal">
-        <div class="feature-card"><span class="ico">📅</span><h3>Réservations en ligne</h3><p>Un lien unique, accessible à tout moment.</p></div>
-        <div class="feature-card"><span class="ico">📆</span><h3>Google Calendar</h3><p>Synchronisation automatique de votre agenda.</p></div>
-        <div class="feature-card"><span class="ico">📘</span><h3>Facebook</h3><p>Intégrez la réservation à votre page.</p></div>
-        <div class="feature-card"><span class="ico">🔔</span><h3>Notifications</h3><p>Alertes en temps réel, pour vous et vos clients.</p></div>
-        <div class="feature-card"><span class="ico">👥</span><h3>Multi-administrateurs</h3><p>Toute l'équipe peut gérer l'agenda.</p></div>
-        <div class="feature-card"><span class="ico">📱</span><h3>Mobile friendly</h3><p>Pensé pour être utilisé depuis un téléphone.</p></div>
-      </div>
-    </div>
-  </section>
+  // Navigation avant/arrière
+  root.querySelectorAll(".sim-btn-next").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (current === 2) {
+        var nameInput = steps[2].querySelector('input[name="sim-name"]');
+        var phoneInput = steps[2].querySelector('input[name="sim-phone"]');
+        state.name = nameInput ? nameInput.value.trim() : "";
+        state.phone = phoneInput ? phoneInput.value.trim() : "";
+        if (!state.name || !state.phone) {
+          nameInput && nameInput.reportValidity && nameInput.reportValidity();
+          return;
+        }
+        fillReceipt(root, state);
+        syncDashboard(root, state);
+      }
+      if (current < steps.length - 1) showStep(current + 1);
+    });
+  });
+  root.querySelectorAll(".sim-btn-back").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (current > 0) showStep(current - 1);
+    });
+  });
 
-  <!-- CTA final -->
-  <section class="tight">
-    <div class="container">
-      <div class="cta-band reveal">
-        <h2>Prêt à simplifier vos rendez-vous ?</h2>
-        <p>Créez votre espace en quelques minutes et partagez votre premier lien de réservation dès aujourd'hui.</p>
-        <a href="/contact" class="btn btn-primary">Essayer gratuitement</a>
-      </div>
-    </div>
-  </section>
+  // Recommencer
+  var restart = root.querySelector(".sim-restart");
+  if (restart) {
+    restart.addEventListener("click", function () {
+      state = { service: null, slot: null, name: "", phone: "" };
+      root.querySelectorAll(".sim-option, .sim-slot").forEach(function (el) { el.classList.remove("selected"); });
+      root.querySelectorAll(".sim-btn-next").forEach(function (b) { if (b.closest('.sim-step') !== steps[2]) b.disabled = true; });
+      var nameInput = steps[2] && steps[2].querySelector('input[name="sim-name"]');
+      var phoneInput = steps[2] && steps[2].querySelector('input[name="sim-phone"]');
+      if (nameInput) nameInput.value = "";
+      if (phoneInput) phoneInput.value = "";
+      resetDashboard(root);
+      showStep(0);
+    });
+  }
 
-</main>
+  showStep(0);
+}
 
-<footer class="site-footer">
-  <div class="container">
-    <div>
-      <a href="/" class="logo">
-        <img src="/images/favicon.svg" alt="" width="26" height="26">
-        Simple Booking
-      </a>
-      <p class="footer-meta">Le rendez-vous, sans le message.<br>© 2026 Simple Booking. Tous droits réservés.</p>
-    </div>
-    <ul class="footer-links">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/tarification">Tarification</a></li>
-      <li><a href="/demonstration">Démonstration</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </div>
-</footer>
+function fillReceipt(root, state) {
+  var receipt = root.querySelector(".sim-receipt");
+  if (!receipt) return;
+  var setRow = function (key, value) {
+    var el = receipt.querySelector('[data-field="' + key + '"]');
+    if (el) el.textContent = value;
+  };
+  setRow("service", state.service || "—");
+  setRow("slot", state.slot || "—");
+  setRow("name", state.name || "—");
+}
 
-<script src="/js/main.js"></script>
-</body>
-</html>
+/* ---------- Synchronisation avec le panneau "tableau de bord" ---------- */
+// Si le simulateur est placé dans un .demo-frame accompagné d'un .demo-panel
+// (page Démonstration), on met à jour ce panneau pour montrer, en direct,
+// l'arrivée de la réservation et sa synchronisation avec l'agenda.
+function syncDashboard(root, state) {
+  var frame = root.closest(".demo-frame");
+  if (!frame) return;
+  var panel = frame.querySelector(".demo-panel");
+  if (!panel) return;
+
+  var list = panel.querySelector(".demo-list");
+  var empty = list.querySelector(".demo-empty");
+  if (empty) empty.remove();
+
+  var row = document.createElement("div");
+  row.className = "demo-row";
+  row.innerHTML =
+    '<span class="who">' + (state.name || "Client") + " — " + (state.service || "") + "</span>" +
+    '<span class="when">' + (state.slot || "") + "</span>";
+  list.prepend(row);
+
+  var cells = panel.querySelectorAll(".demo-cal .cell");
+  if (cells.length) {
+    var target = cells[Math.floor(Math.random() * cells.length)];
+    target.classList.add("synced");
+  }
+
+  var badge = panel.querySelector(".demo-sync-badge");
+  if (badge) badge.classList.add("show");
+}
+
+function resetDashboard(root) {
+  var frame = root.closest(".demo-frame");
+  if (!frame) return;
+  var panel = frame.querySelector(".demo-panel");
+  if (!panel) return;
+
+  var list = panel.querySelector(".demo-list");
+  list.innerHTML = '<div class="demo-empty">En attente d\'une réservation test…</div>';
+
+  panel.querySelectorAll(".demo-cal .cell.synced").forEach(function (c) {
+    c.classList.remove("synced");
+  });
+
+  var badge = panel.querySelector(".demo-sync-badge");
+  if (badge) badge.classList.remove("show");
+}
