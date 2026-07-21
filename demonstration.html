@@ -92,11 +92,11 @@
         <h2>Ce que voient votre client et vous</h2>
       </div>
 
-      <div style="display:flex; justify-content:center;">
+      <div class="demo-frame reveal" id="demo-frame-1">
         <div class="simulator">
           <div class="simulator-head">
             <span class="dot"></span>
-            <span>Réservation en direct</span>
+            <span>1. Côté client — réservation en direct</span>
           </div>
           <div class="simulator-progress">
             <div class="bar done"><span></span></div>
@@ -147,7 +147,7 @@
               <div class="sim-confirm">
                 <div class="check-badge">✓</div>
                 <h4 style="margin-bottom:4px;">Rendez-vous confirmé</h4>
-                <p style="color:var(--ink-soft); font-size:0.85rem; margin:0;">Une notification a été envoyée automatiquement.</p>
+                <p style="color:var(--ink-soft); font-size:0.85rem; margin:0;">Regardez le panneau de droite →</p>
                 <div class="sim-receipt">
                   <div class="row"><span>Prestation</span><span data-field="service">—</span></div>
                   <div class="row"><span>Créneau</span><span data-field="slot">—</span></div>
@@ -159,8 +159,32 @@
             </div>
           </div>
         </div>
+
+        <div class="demo-panel">
+          <div class="demo-panel-head">
+            <span class="dot"></span>
+            <span>2. Côté entreprise — tableau de bord</span>
+          </div>
+          <div class="demo-body">
+            <div class="demo-cal-label">Agenda Google — cette semaine</div>
+            <div class="demo-cal">
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+            </div>
+            <div class="demo-list-label">Dernières demandes</div>
+            <div class="demo-list">
+              <div class="demo-empty">En attente d'une réservation test…</div>
+            </div>
+            <div class="demo-sync-badge">
+              <span>✓</span> Synchronisé automatiquement avec Google Calendar
+            </div>
+          </div>
+        </div>
       </div>
-      <p style="text-align:center; color:var(--muted); font-size:0.88rem; margin-top:22px;">Essayez-le vous-même — c'est exactement ce que verra votre client sur votre lien de réservation.</p>
+      <p style="text-align:center; color:var(--muted); font-size:0.88rem; margin-top:22px;">Essayez-le vous-même : réservez à gauche, regardez la synchronisation se faire à droite en temps réel.</p>
     </div>
   </section>
 

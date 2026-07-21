@@ -3,24 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Booking — Le rendez-vous, sans le message.</title>
-<meta name="description" content="Simple Booking permet à votre entreprise de recevoir des réservations en ligne en moins d'une minute : lien partageable, agenda synchronisé, notifications automatiques. Fini les rendez-vous gérés à la main sur WhatsApp.">
-<link rel="canonical" href="https://simplebooking.app/">
+<title>Tarification — Simple Booking</title>
+<meta name="description" content="Un plan Gratuit pour démarrer, Standard pour grandir, Premium pour toute une équipe. Découvrez les tarifs de Simple Booking, sans engagement.">
+<link rel="canonical" href="https://simplebooking.app/tarification">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Simple Booking">
-<meta property="og:title" content="Simple Booking — Le rendez-vous, sans le message.">
-<meta property="og:description" content="Partagez votre lien et laissez vos clients réserver en moins d'une minute. Agenda synchronisé, notifications automatiques.">
+<meta property="og:title" content="Tarification — Simple Booking">
+<meta property="og:description" content="Un plan Gratuit pour démarrer, Standard pour grandir, Premium pour toute une équipe.">
 <meta property="og:image" content="https://simplebooking.app/images/og-image.png">
-<meta property="og:url" content="https://simplebooking.app/">
+<meta property="og:url" content="https://simplebooking.app/tarification">
 <meta property="og:locale" content="fr_FR">
-
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Simple Booking — Le rendez-vous, sans le message.">
-<meta name="twitter:description" content="Réservation en ligne en moins d'une minute pour les petites entreprises.">
-<meta name="twitter:image" content="https://simplebooking.app/images/og-image.png">
 
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,14 +32,14 @@
     </a>
     <nav>
       <ul class="nav-links">
-        <li><a href="/" aria-current="page">Accueil</a></li>
-        <li><a href="/tarification">Tarification</a></li>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/tarification" aria-current="page">Tarification</a></li>
         <li><a href="/demonstration">Démonstration</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
     </nav>
     <div class="nav-cta">
-      <a href="/contact" class="btn btn-ghost">Voir une démonstration</a>
+      <a href="/demonstration" class="btn btn-ghost">Voir une démonstration</a>
       <a href="/contact" class="btn btn-primary">Essayer gratuitement</a>
     </div>
     <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -55,206 +49,97 @@
 </header>
 
 <main>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-copy">
-        <span class="eyebrow">Gestion de rendez-vous en ligne</span>
-        <h1>Le rendez-vous,<br>sans le message.</h1>
-        <p class="lede">Vos rendez-vous, en toute simplicité. Partagez votre lien et laissez vos clients réserver en moins d'une minute — sans échange de messages.</p>
-        <div class="hero-actions">
-          <a href="/contact" class="btn btn-primary">Essayer gratuitement</a>
-          <a href="/demonstration" class="btn btn-ghost">Voir une démonstration</a>
-        </div>
-        <p class="hero-trust">Aucune carte bancaire requise · Mise en route en quelques minutes</p>
-      </div>
-      <div class="hero-art">
-        <div class="simulator">
-          <div class="simulator-head">
-            <span class="dot"></span>
-            <span>Réservation en direct</span>
-          </div>
-          <div class="simulator-progress">
-            <div class="bar done"><span></span></div>
-            <div class="bar"><span></span></div>
-            <div class="bar"><span></span></div>
-            <div class="bar"><span></span></div>
-          </div>
-          <div class="simulator-body">
-            <div class="sim-step active">
-              <h4>1. Choisissez une prestation</h4>
-              <div class="sim-services">
-                <button type="button" class="sim-option" data-service="Coiffure &amp; soin">Coiffure &amp; soin <span class="price">45 min</span></button>
-                <button type="button" class="sim-option" data-service="Shooting Standard">Shooting Standard <span class="price">1h</span></button>
-                <button type="button" class="sim-option" data-service="Consultation">Consultation <span class="price">30 min</span></button>
-              </div>
-              <div class="sim-actions">
-                <button type="button" class="sim-btn sim-btn-next" disabled>Continuer</button>
-              </div>
-            </div>
-            <div class="sim-step">
-              <h4>2. Choisissez un créneau</h4>
-              <div class="sim-slots">
-                <button type="button" class="sim-slot">14h00</button>
-                <button type="button" class="sim-slot">16h00</button>
-                <button type="button" class="sim-slot">17h30</button>
-              </div>
-              <div class="sim-actions">
-                <button type="button" class="sim-btn sim-btn-back">Retour</button>
-                <button type="button" class="sim-btn sim-btn-next" disabled>Continuer</button>
-              </div>
-            </div>
-            <div class="sim-step">
-              <h4>3. Vos coordonnées</h4>
-              <div class="sim-field">
-                <label for="sim-name-1">Nom</label>
-                <input type="text" id="sim-name-1" name="sim-name" required placeholder="Votre nom">
-              </div>
-              <div class="sim-field">
-                <label for="sim-phone-1">Téléphone</label>
-                <input type="tel" id="sim-phone-1" name="sim-phone" required placeholder="Votre numéro">
-              </div>
-              <div class="sim-actions">
-                <button type="button" class="sim-btn sim-btn-back">Retour</button>
-                <button type="button" class="sim-btn sim-btn-next">Confirmer</button>
-              </div>
-            </div>
-            <div class="sim-step">
-              <div class="sim-confirm">
-                <div class="check-badge">✓</div>
-                <h4 style="margin-bottom:4px;">Rendez-vous confirmé</h4>
-                <p style="color:var(--ink-soft); font-size:0.85rem; margin:0;">Une notification a été envoyée automatiquement.</p>
-                <div class="sim-receipt">
-                  <div class="row"><span>Prestation</span><span data-field="service">—</span></div>
-                  <div class="row"><span>Créneau</span><span data-field="slot">—</span></div>
-                  <div class="row"><span>Client</span><span data-field="name">—</span></div>
-                  <span class="status-pill">En attente de votre validation</span>
-                </div>
-                <button type="button" class="sim-restart">Essayer avec un autre créneau</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Le problème -->
-  <section class="problem">
+  <section class="tight">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Le constat</span>
-        <h2>Gérer ses rendez-vous à la main prend du temps</h2>
+        <span class="eyebrow">Tarification</span>
+        <h1>Un tarif simple, pour chaque étape de votre croissance</h1>
+        <p style="color:var(--ink-soft)">Changez de plan à tout moment. Aucun engagement.</p>
       </div>
-      <div class="grid-3 reveal">
-        <div class="problem-card">
-          <span class="mark">✕</span>
-          <h3>WhatsApp saturé</h3>
-          <p>Les demandes de rendez-vous se mélangent aux autres messages, et rien n'est centralisé.</p>
+
+      <div class="pricing-grid reveal">
+        <div class="plan">
+          <span class="plan-badge">Pour démarrer</span>
+          <h3>Gratuit</h3>
+          <p class="price">0 FCFA<span>/mois</span></p>
+          <p class="note">Idéal pour tester Simple Booking</p>
+          <ul>
+            <li>Nombre de réservations limité</li>
+            <li>Lien de réservation public</li>
+            <li>Fonctionnalités de base</li>
+          </ul>
+          <a href="/contact" class="btn btn-ghost btn-block">Commencer</a>
         </div>
-        <div class="problem-card">
-          <span class="mark">✕</span>
-          <h3>Des clients oubliés</h3>
-          <p>Sans agenda partagé, un message peut se perdre — et un client avec.</p>
+
+        <div class="plan featured">
+          <span class="plan-badge">Le plus choisi</span>
+          <h3>Standard</h3>
+          <p class="price">15 000 FCFA<span>/mois</span></p>
+          <p class="note">Pour une activité qui reçoit chaque semaine</p>
+          <ul>
+            <li>Réservations illimitées</li>
+            <li>Synchronisation Google Calendar</li>
+            <li>Notifications automatiques</li>
+            <li>Intégration Facebook</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary btn-block">Choisir Standard</a>
         </div>
-        <div class="problem-card">
-          <span class="mark">✕</span>
-          <h3>Des journées à répondre</h3>
-          <p>Confirmer, reprogrammer, rappeler les disponibilités : autant de temps perdu.</p>
+
+        <div class="plan">
+          <span class="plan-badge">Pour les équipes</span>
+          <h3>Premium</h3>
+          <p class="price">30 000 FCFA<span>/mois</span></p>
+          <p class="note">Pour plusieurs administrateurs et plusieurs points de vente</p>
+          <ul>
+            <li>Tout Standard, plus :</li>
+            <li>Gestion multi-administrateurs</li>
+            <li>Statistiques de réservation</li>
+            <li>Support prioritaire</li>
+          </ul>
+          <a href="/contact" class="btn btn-ghost btn-block">Choisir Premium</a>
         </div>
       </div>
+
+      <p style="text-align:center; color:var(--muted); font-size:0.9rem; margin-top:28px;">Tarifs indicatifs, communiqués à titre provisoire avant le lancement commercial. Aucune carte bancaire requise pour le plan Gratuit.</p>
     </div>
   </section>
 
-  <!-- La solution -->
-  <section>
+  <section class="tight" style="background:var(--card); border-top:1px solid var(--border);">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">La solution</span>
-        <h2>Un lien. Un agenda. Zéro message.</h2>
+        <span class="eyebrow">Questions fréquentes</span>
+        <h2>Ce qu'il faut savoir</h2>
       </div>
-      <ul class="solution-list reveal">
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Réservation autonome</h3><p>Vos clients choisissent leur créneau eux-mêmes, à toute heure.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Agenda synchronisé</h3><p>Connecté à Google Calendar, toujours à jour.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Partage Facebook</h3><p>Votre lien de réservation directement sur votre page.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Disponibilités automatiques</h3><p>Plus de créneaux doublés ni de conflits d'horaires.</p></div>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <div><h3>Notifications</h3><p>Vous et vos clients êtes prévenus à chaque étape.</p></div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Fonctionnement -->
-  <section class="tight" style="background:var(--card); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">En trois étapes</span>
-        <h2>Prêt en moins d'une minute</h2>
-      </div>
-      <div class="steps reveal">
-        <div class="step">
-          <span class="num">1</span>
-          <h3>Créer son espace</h3>
-          <p>Renseignez votre activité et vos prestations.</p>
+      <div class="faq reveal">
+        <div class="faq-item">
+          <h3>Puis-je changer de plan à tout moment ?</h3>
+          <p>Oui. Vous pouvez passer d'un plan à l'autre depuis votre espace, sans perdre vos données ni vos réservations en cours.</p>
         </div>
-        <div class="step">
-          <span class="num">2</span>
-          <h3>Partager son lien</h3>
-          <p>Sur WhatsApp, Facebook ou votre site.</p>
+        <div class="faq-item">
+          <h3>Y a-t-il une période d'essai ?</h3>
+          <p>Le plan Gratuit vous permet de tester Simple Booking sans limite de temps, avec un nombre de réservations restreint.</p>
         </div>
-        <div class="step">
-          <span class="num">3</span>
-          <h3>Recevoir les réservations</h3>
-          <p>Automatiquement, dans votre agenda.</p>
+        <div class="faq-item">
+          <h3>Y a-t-il un engagement de durée ?</h3>
+          <p>Non, aucun engagement. Vous pouvez arrêter votre abonnement à tout moment.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Comment se passe le paiement ?</h3>
+          <p>Le paiement en ligne sera disponible prochainement. En attendant, contactez-nous pour activer votre abonnement.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Fonctionnalités -->
-  <section>
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Fonctionnalités</span>
-        <h2>Tout ce qu'il faut, rien de plus</h2>
-      </div>
-      <div class="grid-3 reveal">
-        <div class="feature-card"><span class="ico">📅</span><h3>Réservations en ligne</h3><p>Un lien unique, accessible à tout moment.</p></div>
-        <div class="feature-card"><span class="ico">📆</span><h3>Google Calendar</h3><p>Synchronisation automatique de votre agenda.</p></div>
-        <div class="feature-card"><span class="ico">📘</span><h3>Facebook</h3><p>Intégrez la réservation à votre page.</p></div>
-        <div class="feature-card"><span class="ico">🔔</span><h3>Notifications</h3><p>Alertes en temps réel, pour vous et vos clients.</p></div>
-        <div class="feature-card"><span class="ico">👥</span><h3>Multi-administrateurs</h3><p>Toute l'équipe peut gérer l'agenda.</p></div>
-        <div class="feature-card"><span class="ico">📱</span><h3>Mobile friendly</h3><p>Pensé pour être utilisé depuis un téléphone.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA final -->
   <section class="tight">
     <div class="container">
       <div class="cta-band reveal">
-        <h2>Prêt à simplifier vos rendez-vous ?</h2>
-        <p>Créez votre espace en quelques minutes et partagez votre premier lien de réservation dès aujourd'hui.</p>
-        <a href="/contact" class="btn btn-primary">Essayer gratuitement</a>
+        <h2>Une question sur le plan qu'il vous faut ?</h2>
+        <p>Décrivez-nous votre activité, nous vous recommandons le plan adapté.</p>
+        <a href="/contact" class="btn btn-primary">Demander une démo</a>
       </div>
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">

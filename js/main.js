@@ -121,6 +121,7 @@ function setupSimulator(root) {
           return;
         }
         fillReceipt(root, state);
+        syncDashboard(root, state);
       }
       if (current < steps.length - 1) showStep(current + 1);
     });
@@ -142,6 +143,7 @@ function setupSimulator(root) {
       var phoneInput = steps[2] && steps[2].querySelector('input[name="sim-phone"]');
       if (nameInput) nameInput.value = "";
       if (phoneInput) phoneInput.value = "";
+      resetDashboard(root);
       showStep(0);
     });
   }
@@ -159,4 +161,52 @@ function fillReceipt(root, state) {
   setRow("service", state.service || "—");
   setRow("slot", state.slot || "—");
   setRow("name", state.name || "—");
+}
+
+/* ---------- Synchronisation avec le panneau "tableau de bord" ---------- */
+// Si le simulateur est placé dans un .demo-frame accompagné d'un .demo-panel
+// (page Démonstration), on met à jour ce panneau pour montrer, en direct,
+// l'arrivée de la réservation et sa synchronisation avec l'agenda.
+function syncDashboard(root, state) {
+  var frame = root.closest(".demo-frame");
+  if (!frame) return;
+  var panel = frame.querySelector(".demo-panel");
+  if (!panel) return;
+
+  var list = panel.querySelector(".demo-list");
+  var empty = list.querySelector(".demo-empty");
+  if (empty) empty.remove();
+
+  var row = document.createElement("div");
+  row.className = "demo-row";
+  row.innerHTML =
+    '<span class="who">' + (state.name || "Client") + " — " + (state.service || "") + "</span>" +
+    '<span class="when">' + (state.slot || "") + "</span>";
+  list.prepend(row);
+
+  var cells = panel.querySelectorAll(".demo-cal .cell");
+  if (cells.length) {
+    var target = cells[Math.floor(Math.random() * cells.length)];
+    target.classList.add("synced");
+  }
+
+  var badge = panel.querySelector(".demo-sync-badge");
+  if (badge) badge.classList.add("show");
+}
+
+function resetDashboard(root) {
+  var frame = root.closest(".demo-frame");
+  if (!frame) return;
+  var panel = frame.querySelector(".demo-panel");
+  if (!panel) return;
+
+  var list = panel.querySelector(".demo-list");
+  list.innerHTML = '<div class="demo-empty">En attente d\'une réservation test…</div>';
+
+  panel.querySelectorAll(".demo-cal .cell.synced").forEach(function (c) {
+    c.classList.remove("synced");
+  });
+
+  var badge = panel.querySelector(".demo-sync-badge");
+  if (badge) badge.classList.remove("show");
 }
